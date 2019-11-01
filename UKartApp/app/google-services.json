@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1093591018279",
+    "firebase_url": "https://ukartapp.firebaseio.com",
+    "project_id": "ukartapp",
+    "storage_bucket": "ukartapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1093591018279:android:f2a84e8ce626beb71dd702",
+        "android_client_info": {
+          "package_name": "com.example.ukartapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1093591018279-s6jedhsdc3eeskn5vunas164j5f37oo3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ukartapp",
+            "certificate_hash": "181ec61b96980384e11dc623087897eafb0dfc05"
+          }
+        },
+        {
+          "client_id": "1093591018279-8o15dr3mtg0dd9qg1ts6ks6vq2fgtrmt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR0Lp6hDpiJtSDQxgB0D6uN-3iwmAPNXI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1093591018279-8o15dr3mtg0dd9qg1ts6ks6vq2fgtrmt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

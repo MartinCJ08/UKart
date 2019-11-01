@@ -1,8 +1,10 @@
-package com.example.ukartapp;
+package com.example.ukartapp.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.ukartapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
