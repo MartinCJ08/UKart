@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1093591018279-i7ii9pi89a0esr0lobijoo8nh740dp7q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ukartapp",
+            "certificate_hash": "94206bf39f2648570c8afaa61a7a80fd4263d60c"
+          }
+        },
+        {
           "client_id": "1093591018279-s6jedhsdc3eeskn5vunas164j5f37oo3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
