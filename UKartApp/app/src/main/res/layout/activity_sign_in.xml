@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activities.SignInActivity">
+    tools:context=".Activities.SignInActivity"
+    android:padding="16dp"
+    android:background="@color/colorPrimary">
 
     <ImageView android:layout_width="wrap_content"
         android:layout_height="150dp"
@@ -20,11 +22,13 @@
         android:inputType="textEmailAddress"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:textColor="#fff"
         android:drawableLeft="@drawable/user_icon"
         android:textSize="16dp"
         android:padding="8dp"
-        android:hint="Email" />
+        android:hint="Email"
+        android:textColor="#FFFF"
+        android:textStyle="bold"
+        android:textColorHint="#ffff"/>
 
     <!-- Password Label -->
     <EditText android:id="@+id/input_password"
@@ -36,8 +40,10 @@
         android:padding="8dp"
         android:drawableLeft="@drawable/password_icon"
         android:textSize="16dp"
-        android:textColor="#fff"
-        android:hint="Password"/>
+        android:hint="Password"
+        android:textColor="#FFFF"
+        android:textStyle="bold"
+        android:textColorHint="#ffff"/>
 
 
     <Button
@@ -45,7 +51,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onClick"
-        android:text="Sign in" />
+        android:text="Sign in"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:textSize="30dp"/>
 
     <TextView android:id="@+id/link_signup"
         android:layout_width="fill_parent"
@@ -54,6 +62,8 @@
         android:text="No account yet? Create one"
         android:gravity="center"
         android:onClick="goToSignUp"
-        android:textSize="16dip"/>
+        android:textSize="16dip"
+        android:textColor="#FFFF"
+        android:textStyle="bold"/>
 
 </LinearLayout>
