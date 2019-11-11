@@ -5,6 +5,9 @@
 
 package com.example.ukartapp.Adapters;
 
+import com.example.ukartapp.ConfFragment;
+import com.example.ukartapp.Fragments.HomeFragment;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -23,15 +26,13 @@ public class MyPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-//                return new FirstFragment();
+                return new HomeFragment();
             case 1:
-//                return new SecondFragment();
+                return new ConfFragment();
             case 2:
-//                return new ThirdFragment();
             default:
-//                return null;
+                return null;
         }
-        return null;
     }
 
     @Override

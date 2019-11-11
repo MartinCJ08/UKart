@@ -26,36 +26,36 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 //
         tabLayout = findViewById(R.id.tabLayout);
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_action_cart));
+//        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_action_cart));
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_action_home));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_action_camera));
+//        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_action_camera));
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_action_settings));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
 
         //TODO: This code fragment has to be uncommented when the layout's fragments be ready
-//        viewPager = findViewById(R.id.viewPager);
-//        pagerAdapter = new MyPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
-//
-//        viewPager.setAdapter(pagerAdapter);
-//        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-//
-//        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-//            @Override
-//            public void onTabSelected(TabLayout.Tab tab) {
-//                int position = tab.getPosition();
-//                viewPager.setCurrentItem(position);
-//            }
-//
-//            @Override
-//            public void onTabUnselected(TabLayout.Tab tab) {
-//
-//            }
-//
-//            @Override
-//            public void onTabReselected(TabLayout.Tab tab) {
-//
-//            }
-//        });
+        viewPager = findViewById(R.id.viewPager);
+        pagerAdapter = new MyPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+
+        viewPager.setAdapter(pagerAdapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int position = tab.getPosition();
+                viewPager.setCurrentItem(position);
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 }
