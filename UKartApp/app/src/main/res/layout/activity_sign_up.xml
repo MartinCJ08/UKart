@@ -5,53 +5,75 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activities.SignUpActivity">
+    tools:context=".Activities.SignUpActivity"
+    android:padding="16dp"
+    android:background="@color/colorPrimary">
 
     <EditText
         android:id="@+id/etxtEmailSign"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Email"
-        android:inputType="textEmailAddress"/>
+        android:inputType="textEmailAddress"
+        android:textColor="#FFFF"
+        android:textStyle="bold"
+        android:textColorHint="#ffff"/>
 
     <EditText
         android:id="@+id/etxtPassSign"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Contraseña"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword"
+        android:textColor="#FFFF"
+        android:textStyle="bold"
+        android:textColorHint="#ffff"/>
 
     <EditText
         android:id="@+id/etxtPassSign2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Confirma contraseña"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword"
+        android:textColor="#FFFF"
+        android:textStyle="bold"
+        android:textColorHint="#ffff"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="italic"
+        android:textColor="#FFFF"
+        android:textColorHint="#ffff"
         android:text="Su contraseña debe contener al menos 7 caracteres con letras y números"/>
 
     <EditText
         android:id="@+id/etxtNomSign"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nombre"/>
+        android:hint="Nombre"
+        android:textColor="#FFFF"
+        android:textStyle="bold"
+        android:textColorHint="#ffff"/>
 
     <EditText
         android:id="@+id/etxtApeSign"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Apellido"/>
+        android:hint="Apellido"
+        android:textColor="#FFFF"
+        android:textStyle="bold"
+        android:textColorHint="#ffff"/>
 
     <EditText
         android:id="@+id/etxtPhoneSign"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Telefono"
-        android:inputType="number"/>
+        android:inputType="number"
+        android:textColor="#FFFF"
+        android:textStyle="bold"
+        android:textColorHint="#ffff"/>
 
     <Button
         android:id="@+id/btnSignReg"
