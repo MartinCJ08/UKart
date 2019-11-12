@@ -1,4 +1,4 @@
-package com.example.ukartapp;
+package com.example.ukartapp.Fragments;
 
 
 import android.content.DialogInterface;
@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.ukartapp.R;
 
 
 /**
@@ -121,7 +123,7 @@ public class ConfFragment extends Fragment {
     }
 
     private void checkPwd(String oldPwd, String newPwd, String newPwdConfirm) {
-        //Confirmar que la antigua contraseña sea igual a la actual
+        // Confirmar que la antigua contraseña sea igual a la actual
 
         if(oldPwd.equals("") || newPwd.equals("")|| newPwdConfirm.equals("")){
             Toast.makeText(getContext(),"Please, fill all the data",Toast.LENGTH_SHORT).show();

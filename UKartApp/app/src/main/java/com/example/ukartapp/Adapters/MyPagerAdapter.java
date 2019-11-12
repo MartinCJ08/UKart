@@ -5,7 +5,7 @@
 
 package com.example.ukartapp.Adapters;
 
-import com.example.ukartapp.ConfFragment;
+import com.example.ukartapp.Fragments.ConfFragment;
 import com.example.ukartapp.Fragments.HomeFragment;
 
 import androidx.fragment.app.Fragment;
