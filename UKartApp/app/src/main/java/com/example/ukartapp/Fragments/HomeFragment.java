@@ -9,13 +9,13 @@ package com.example.ukartapp.Fragments;
 import android.os.Bundle;
 
 import ahmed.easyslider.EasySlider;
+import ahmed.easyslider.SliderItem;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.ukartapp.Adapters.ShoppingListAdapter;
 import com.example.ukartapp.Models.Shopping;
@@ -33,6 +33,7 @@ public class HomeFragment extends Fragment {
     private View view;
 
     private EasySlider easySlider;
+    private List<SliderItem> sliderItems = new ArrayList<>();
     private ListView listView;
 
     private ShoppingListAdapter shoppingListAdapter;
@@ -52,7 +53,8 @@ public class HomeFragment extends Fragment {
         easySlider = view.findViewById(R.id.slider);
         listView = view.findViewById(R.id.listShops);
 
-        setAllShoppings();
+        setAllShopping();
+        setImagesSlider();
 
         shoppingListAdapter = new ShoppingListAdapter(getContext(),shoppingList,R.layout.list_shopping_item);
         listView.setAdapter(shoppingListAdapter);
@@ -60,11 +62,23 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    private void setAllShoppings(){
+    /**
+     * Generate static shopping
+     * TODO: Make dynamic with Firebase
+     */
+    private void setAllShopping(){
         shoppingList.add(new Shopping("Miguel","11/11/2019","250"));
         shoppingList.add(new Shopping("Martín","11/11/2019","250"));
         shoppingList.add(new Shopping("Rubí","11/11/2019","250"));
         shoppingList.add(new Shopping("Karla","11/11/2019","250"));
+    }
+
+    private void setImagesSlider(){
+        sliderItems.add(new SliderItem("Renueva membresia", R.drawable.slider1));
+        sliderItems.add(new SliderItem("OpenHouse", R.drawable.slider2));
+        sliderItems.add(new SliderItem("Vinos y Licores", R.drawable.slider3));
+
+        easySlider.setPages(sliderItems);
     }
 
 }

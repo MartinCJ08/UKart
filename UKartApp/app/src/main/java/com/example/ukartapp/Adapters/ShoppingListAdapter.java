@@ -20,6 +20,8 @@ public class ShoppingListAdapter extends BaseAdapter {
     private List<Shopping> shoppingList;
     private int layout;
 
+    private static final int[] ICONS = {R.mipmap.ic_basket, R.mipmap.ic_eggs, R.mipmap.ic_invoice, R.mipmap.ic_meat, R.mipmap.ic_snack};
+
     public ShoppingListAdapter(){}
 
     public ShoppingListAdapter(Context context, List<Shopping> shoppingList, int layout){
@@ -61,10 +63,10 @@ public class ShoppingListAdapter extends BaseAdapter {
         txtQuantity = convertView.findViewById(R.id.txtQuantityList);
         txtPrice = convertView.findViewById(R.id.txtPriceList);
 
-//        imgIcon.setImageResource(currentShopping.getIcon());
-        txtDate.setText(currentShopping.getDate());
-        txtQuantity.setText(currentShopping.getQuantityProducts());
-        txtPrice.setText(currentShopping.getPrice());
+        imgIcon.setImageResource(ICONS[(int)(Math.random() * 4)]);
+        txtDate.setText("Fecha: " + currentShopping.getDate());
+        txtQuantity.setText("Articulo(s) comprado(s): " + currentShopping.getQuantityProducts());
+        txtPrice.setText("Total: $" + currentShopping.getPrice());
 
         return convertView;
     }

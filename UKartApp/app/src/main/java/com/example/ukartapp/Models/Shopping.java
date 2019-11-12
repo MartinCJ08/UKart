@@ -7,19 +7,15 @@ import java.util.List;
 
 public class Shopping {
 
-    private int icon;
     private String customer;
     private String date;
     private String quantityProducts;
     private String price;
     private List<Products> productsList = new ArrayList<> ();
 
-    private static final int[] ICONS = {R.mipmap.ic_basket, R.mipmap.ic_eggs, R.mipmap.ic_invoice, R.mipmap.ic_meat, R.mipmap.ic_snack};
-
     public Shopping(){}
 
     public Shopping(String customer, String date, String price, List<Products> productsList){
-        this.icon = ICONS[(int)Math.random() * 5];
         this.customer = customer;
         this.date = date;
         this.quantityProducts = this.productsList.size()+"";
@@ -29,19 +25,10 @@ public class Shopping {
 
     //TODO: ERASE THIS CONSTRUCTOR
     public Shopping(String customer, String date, String price){
-        this.icon = ICONS[0];
         this.customer = customer;
         this.date = date;
         this.quantityProducts = this.productsList.size()+"";
         this.price = price;
-    }
-
-    public int getIcon() {
-        return icon;
-    }
-
-    public void setIcon(int icon) {
-        this.icon = icon;
     }
 
     public String getCustomer() {
