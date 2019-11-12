@@ -15,8 +15,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.example.ukartapp.Adapters.ShoppingListAdapter;
+import com.example.ukartapp.Models.Shopping;
 import com.example.ukartapp.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -28,6 +34,10 @@ public class HomeFragment extends Fragment {
 
     private EasySlider easySlider;
     private ListView listView;
+
+    private ShoppingListAdapter shoppingListAdapter;
+
+    private List<Shopping> shoppingList = new ArrayList<>();
 
     public HomeFragment() {
         // Required empty public constructor
@@ -42,7 +52,19 @@ public class HomeFragment extends Fragment {
         easySlider = view.findViewById(R.id.slider);
         listView = view.findViewById(R.id.listShops);
 
+        setAllShoppings();
+
+        shoppingListAdapter = new ShoppingListAdapter(getContext(),shoppingList,R.layout.list_shopping_item);
+        listView.setAdapter(shoppingListAdapter);
+
         return view;
+    }
+
+    private void setAllShoppings(){
+        shoppingList.add(new Shopping("Miguel","11/11/2019","250"));
+        shoppingList.add(new Shopping("Martín","11/11/2019","250"));
+        shoppingList.add(new Shopping("Rubí","11/11/2019","250"));
+        shoppingList.add(new Shopping("Karla","11/11/2019","250"));
     }
 
 }

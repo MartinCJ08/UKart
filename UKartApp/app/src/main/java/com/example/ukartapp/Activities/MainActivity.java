@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
 
-        //TODO: This code fragment has to be uncommented when the layout's fragments be ready
+//        //TODO: This code fragment has to be uncommented when the layout's fragments be ready
         viewPager = findViewById(R.id.viewPager);
         pagerAdapter = new MyPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
 
