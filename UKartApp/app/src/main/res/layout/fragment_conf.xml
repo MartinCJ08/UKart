@@ -5,10 +5,99 @@
     android:layout_height="match_parent"
     tools:context=".ConfFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Account Settings"
+            android:textSize="18sp"
+            android:textColor="#454545"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/txtNameConf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Name.."
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/txtLastNameConf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Last Name.."
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/txtEmailConf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Email.."
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/txtCellConf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Cellphone number.."
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Basics"
+            android:textSize="18sp"
+            android:textColor="#454545"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnChangePwd"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Changed password" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Advanced"
+            android:textSize="18sp"
+            android:textColor="#454545"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnPrivacy"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Privacy" />
+
+        <Button
+            android:id="@+id/btnAbout"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="About" />
+
+        <Button
+            android:id="@+id/btnSaveConf"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SAVE DATA" />
+
+    </LinearLayout>
 
 </FrameLayout>
