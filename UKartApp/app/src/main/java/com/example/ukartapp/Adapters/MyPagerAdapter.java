@@ -30,11 +30,9 @@ public class MyPagerAdapter extends FragmentStatePagerAdapter {
             case 1:
                 return new ConfFragment();
             case 2:
-//                return new ThirdFragment();
             default:
                 return null;
         }
-//        return null;
     }
 
     @Override
