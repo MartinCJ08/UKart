@@ -11,24 +11,16 @@ public class Shopping {
     private String date;
     private String quantityProducts;
     private String price;
-    private List<Products> productsList = new ArrayList<> ();
+    private List<String> productsList = new ArrayList<> ();
 
     public Shopping(){}
 
-    public Shopping(String customer, String date, String price, List<Products> productsList){
+    public Shopping(String customer, String date, String price, List<String> productsList){
         this.customer = customer;
         this.date = date;
-        this.quantityProducts = this.productsList.size()+"";
+        this.quantityProducts = productsList.size()+"";
         this.price = price;
         this.productsList = productsList;
-    }
-
-    //TODO: ERASE THIS CONSTRUCTOR
-    public Shopping(String customer, String date, String price){
-        this.customer = customer;
-        this.date = date;
-        this.quantityProducts = this.productsList.size()+"";
-        this.price = price;
     }
 
     public String getCustomer() {
@@ -63,11 +55,11 @@ public class Shopping {
         this.price = price;
     }
 
-    public List<Products> getProductsList() {
+    public List<String> getProductsList() {
         return productsList;
     }
 
-    public void setProductsList(List<Products> productsList) {
+    public void setProductsList(List<String> productsList) {
         this.productsList = productsList;
     }
 }

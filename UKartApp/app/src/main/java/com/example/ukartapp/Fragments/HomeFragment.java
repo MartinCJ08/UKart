@@ -53,7 +53,7 @@ public class HomeFragment extends Fragment {
         easySlider = view.findViewById(R.id.slider);
         listView = view.findViewById(R.id.listShops);
 
-        setAllShopping();
+//        setAllShopping();
         setImagesSlider();
 
         shoppingListAdapter = new ShoppingListAdapter(getContext(),shoppingList,R.layout.list_shopping_item);
@@ -66,12 +66,12 @@ public class HomeFragment extends Fragment {
      * Generate static shopping
      * TODO: Make dynamic with Firebase
      */
-    private void setAllShopping(){
-        shoppingList.add(new Shopping("Miguel","11/11/2019","250"));
-        shoppingList.add(new Shopping("Martín","11/11/2019","250"));
-        shoppingList.add(new Shopping("Rubí","11/11/2019","250"));
-        shoppingList.add(new Shopping("Karla","11/11/2019","250"));
-    }
+//    private void setAllShopping(){
+//        shoppingList.add(new Shopping("Miguel","11/11/2019","250"));
+//        shoppingList.add(new Shopping("Martín","11/11/2019","250"));
+//        shoppingList.add(new Shopping("Rubí","11/11/2019","250"));
+//        shoppingList.add(new Shopping("Karla","11/11/2019","250"));
+//    }
 
     private void setImagesSlider(){
         sliderItems.add(new SliderItem("Renueva membresia", R.drawable.slider1));
