@@ -18,12 +18,23 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class SignInActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     TextView input_email,input_password;
     Intent inMain;
     Intent inSignup;
+    private String key = "";
+    private String sEmail = "";
+
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference reference = database.getReference("usuarios");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +93,29 @@ public class SignInActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
-                            inMain = new Intent(SignInActivity.this, MainActivity.class);
-                            startActivity(inMain);
+
+                            Query query = reference.orderByChild("correo").equalTo(email);
+
+                            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                    for(DataSnapshot datasnapshot: dataSnapshot.getChildren()){
+                                        key = datasnapshot.getKey();
+                                    }
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("ID", key);
+                                    inMain = new Intent(SignInActivity.this, MainActivity.class);
+                                    inMain.putExtras(bundle);
+                                    startActivity(inMain);
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
 //                            updateUI(user);
                         } else {
                             Toast.makeText(getApplicationContext(), "Authentication failed.",
