@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Shopping {
 
+    private String id;
     private String customer;
     private String date;
     private String quantityProducts;
@@ -21,6 +22,14 @@ public class Shopping {
         this.quantityProducts = productsList.size()+"";
         this.price = price;
         this.productsList = productsList;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCustomer() {

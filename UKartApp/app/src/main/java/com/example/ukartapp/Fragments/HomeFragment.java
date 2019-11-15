@@ -10,6 +10,8 @@ import android.os.Bundle;
 
 import ahmed.easyslider.EasySlider;
 import ahmed.easyslider.SliderItem;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -17,9 +19,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.example.ukartapp.Activities.MainActivity;
 import com.example.ukartapp.Adapters.ShoppingListAdapter;
 import com.example.ukartapp.Models.Shopping;
 import com.example.ukartapp.R;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +38,9 @@ import java.util.List;
  */
 public class HomeFragment extends Fragment {
 
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+
     private View view;
 
     private EasySlider easySlider;
@@ -39,6 +50,8 @@ public class HomeFragment extends Fragment {
     private ShoppingListAdapter shoppingListAdapter;
 
     private List<Shopping> shoppingList = new ArrayList<>();
+
+    private final String SHOPPING_PATH = "shopping";
 
     public HomeFragment() {
         // Required empty public constructor
@@ -53,7 +66,7 @@ public class HomeFragment extends Fragment {
         easySlider = view.findViewById(R.id.slider);
         listView = view.findViewById(R.id.listShops);
 
-//        setAllShopping();
+        setAllShopping();
         setImagesSlider();
 
         shoppingListAdapter = new ShoppingListAdapter(getContext(),shoppingList,R.layout.list_shopping_item);
@@ -64,15 +77,47 @@ public class HomeFragment extends Fragment {
 
     /**
      * Generate static shopping
-     * TODO: Make dynamic with Firebase
      */
-//    private void setAllShopping(){
-//        shoppingList.add(new Shopping("Miguel","11/11/2019","250"));
-//        shoppingList.add(new Shopping("Martín","11/11/2019","250"));
-//        shoppingList.add(new Shopping("Rubí","11/11/2019","250"));
-//        shoppingList.add(new Shopping("Karla","11/11/2019","250"));
-//    }
+    private void setAllShopping(){
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference(SHOPPING_PATH);
 
+        databaseReference.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Shopping currentShopping = dataSnapshot.getValue(Shopping.class);
+                currentShopping.setId(dataSnapshot.getKey());
+
+                if(currentShopping.getCustomer().equals(MainActivity.idAuthUser)){
+                    shoppingList.add(currentShopping);
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    /**
+     * Create Slider
+     */
     private void setImagesSlider(){
         sliderItems.add(new SliderItem("Renueva membresia", R.drawable.slider1));
         sliderItems.add(new SliderItem("OpenHouse", R.drawable.slider2));
