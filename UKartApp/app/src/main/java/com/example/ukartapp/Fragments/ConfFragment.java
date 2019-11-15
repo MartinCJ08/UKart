@@ -4,6 +4,7 @@ package com.example.ukartapp.Fragments;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
@@ -14,17 +15,32 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.ukartapp.Activities.MainActivity;
+import com.example.ukartapp.Models.Usuario;
 import com.example.ukartapp.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ConfFragment extends Fragment {
-    View viewGlobal;
-    Button btnAbout,btnChangedPwd,btnPricacy,btnSaveConf;
-    EditText txtNameConf,txtLastNameConf,txtEmailConf,txtCellconf;
-    String theNewPwd="",nom="",ape="",email="",cell="";
+    private FirebaseAuth mAuth;
+
+    private View viewGlobal;
+    private Button btnAbout,btnChangedPwd,btnPricacy,btnSaveConf;
+    private EditText txtNameConf,txtLastNameConf,txtEmailConf,txtCellconf;
+    private String theNewPwd="",nom="",ape="",email="",cell="";
+    private String oldPwd="",oldNom="",oldApe="",oldEmail="",oldCell="";
+
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference myRef = database.getReference("usuarios");
+    private DatabaseReference reference = database.getReference("usuarios").child(MainActivity.idAuthUser);
 
     public ConfFragment() {
         // Required empty public constructor
@@ -45,39 +61,52 @@ public class ConfFragment extends Fragment {
         txtEmailConf = viewGlobal.findViewById(R.id.txtEmailConf);
         txtCellconf = viewGlobal.findViewById(R.id.txtCellConf);
 
-        btnAbout.setOnClickListener(new View.OnClickListener() {
+        btnAbout.setOnClickListener(view -> createAboutDialog());
+        btnChangedPwd.setOnClickListener(view -> createChangedPwdDialog());
+        btnPricacy.setOnClickListener(view -> createPrivacyDialog());
+        btnSaveConf.setOnClickListener(view -> {
+            nom = txtNameConf.getText().toString();
+            ape = txtLastNameConf.getText().toString();
+            email = txtEmailConf.getText().toString();
+            cell = txtCellconf.getText().toString();
+            changeConfiguration();
+        });
+
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
-                createAboutDialog();
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                oldNom = dataSnapshot.child("nombre").getValue(String.class);
+                oldApe = dataSnapshot.child("apellido").getValue(String.class);
+                oldEmail = dataSnapshot.child("correo").getValue(String.class);
+                oldCell = dataSnapshot.child("telefono").getValue(String.class);
+                oldPwd = dataSnapshot.child("pass").getValue(String.class);
+
+                txtNameConf.setText(oldNom);
+                txtLastNameConf.setText(oldApe);
+                txtEmailConf.setText(oldEmail);
+                txtCellconf.setText(oldCell);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
-        btnChangedPwd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createChangedPwdDialog();
-            }
-        });
-        btnPricacy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createPrivacyDialog();
-            }
-        });
-        btnSaveConf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                nom = txtNameConf.getText().toString();
-                ape = txtLastNameConf.getText().toString();
-                email = txtEmailConf.getText().toString();
-                cell = txtCellconf.getText().toString();
-                changeConfiguration();
-            }
-        });
+
         return viewGlobal;
     }
 
     private void changeConfiguration() {
         // TODO: Agregar la información a la base de datos
+        if(this.nom.equals("") || this.ape.equals("") || this.cell.equals("") || this.email.equals("")){
+            Toast.makeText(getContext(),"Fill all the field", Toast.LENGTH_SHORT).show();
+        } else {
+            if(!this.nom.equals(this.oldNom) || !this.ape.equals(this.oldApe) || !this.cell.equals(this.oldCell)
+             || !this.email.equals(this.oldEmail) ){
+                modifiedUserDB(nom,ape,email,theNewPwd,cell);
+            }
+        }
         Toast.makeText(getContext(),"Nom"+nom+" newPwd"+theNewPwd,Toast.LENGTH_SHORT).show();
     }
 
@@ -123,17 +152,28 @@ public class ConfFragment extends Fragment {
     }
 
     private void checkPwd(String oldPwd, String newPwd, String newPwdConfirm) {
-        // Confirmar que la antigua contraseña sea igual a la actual
 
         if(oldPwd.equals("") || newPwd.equals("")|| newPwdConfirm.equals("")){
             Toast.makeText(getContext(),"Please, fill all the data",Toast.LENGTH_SHORT).show();
         }else{
-            if(newPwd.equals(newPwdConfirm)){
-                theNewPwd = newPwd;
-                Toast.makeText(getContext(),"Password will change correcltly",Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(getContext(),"The new password don't match", Toast.LENGTH_SHORT).show();
+            if(this.oldPwd.equals(oldPwd)){
+                if(newPwd.equals(newPwdConfirm)){
+                    theNewPwd = newPwd;
+                    Toast.makeText(getContext(),"Password will change correcltly",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getContext(),"The new password don't match", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(getContext(),"The old password don't match "+oldPwd+" ol"+this.oldPwd,Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private void modifiedUserDB(String nom, String ape, String email, String pass, String phone) {
+        if( pass.equals("")){
+            pass = this.oldPwd;
+        }
+        Usuario user = new Usuario(nom, ape, email, pass, phone);
+        reference.setValue(user);
     }
 }
