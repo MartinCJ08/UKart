@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.ukartapp.Models.Usuario;
 import com.example.ukartapp.R;
+import com.example.ukartapp.Utils.Constants;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -23,7 +24,7 @@ public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("usuarios");
+    DatabaseReference myRef = database.getReference(Constants.USERS_PATH);
 
     private Button btnSignReg;
     private EditText etxtEmailSign, etxtPassSign, etxtPassSign2, etxtNomSign, etxtApeSign, etxtPhoneSign;

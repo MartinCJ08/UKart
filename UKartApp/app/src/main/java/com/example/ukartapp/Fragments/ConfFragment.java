@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.ukartapp.Activities.MainActivity;
 import com.example.ukartapp.Models.Usuario;
 import com.example.ukartapp.R;
+import com.example.ukartapp.Utils.Constants;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,8 +40,8 @@ public class ConfFragment extends Fragment {
     private String oldPwd="",oldNom="",oldApe="",oldEmail="",oldCell="";
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference myRef = database.getReference("usuarios");
-    private DatabaseReference reference = database.getReference("usuarios").child(MainActivity.idAuthUser);
+    private DatabaseReference myRef = database.getReference(Constants.USERS_PATH);
+    private DatabaseReference reference = myRef.child(MainActivity.idAuthUser);
 
     public ConfFragment() {
         // Required empty public constructor
@@ -75,11 +76,11 @@ public class ConfFragment extends Fragment {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                oldNom = dataSnapshot.child("nombre").getValue(String.class);
-                oldApe = dataSnapshot.child("apellido").getValue(String.class);
-                oldEmail = dataSnapshot.child("correo").getValue(String.class);
-                oldCell = dataSnapshot.child("telefono").getValue(String.class);
-                oldPwd = dataSnapshot.child("pass").getValue(String.class);
+                oldNom = dataSnapshot.child(Constants.USER_NAME).getValue(String.class);
+                oldApe = dataSnapshot.child(Constants.USER_LAST_NAME).getValue(String.class);
+                oldEmail = dataSnapshot.child(Constants.USER_EMAIL).getValue(String.class);
+                oldCell = dataSnapshot.child(Constants.USER_PHONE).getValue(String.class);
+                oldPwd = dataSnapshot.child(Constants.USER_PASS).getValue(String.class);
 
                 txtNameConf.setText(oldNom);
                 txtLastNameConf.setText(oldApe);

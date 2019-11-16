@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.example.ukartapp.R;
 
-public class DescriptionActivity extends AppCompatActivity {
+public class ProductDescriptionActivity extends AppCompatActivity {
 
     private ImageView imgDesc;
     private TextView txtDescName, txtDescPrice, txtDescInfo;
@@ -24,7 +24,7 @@ public class DescriptionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_description);
+        setContentView(R.layout.activity_product_description);
 
         imgDesc = findViewById(R.id.imgDesc);
         txtDescName = findViewById(R.id.txtDescName);

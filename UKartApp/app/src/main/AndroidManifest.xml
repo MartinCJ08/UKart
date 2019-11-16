@@ -2,13 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ukartapp">
 
-    <uses-feature android:name="android:hardware.camera" />
-
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-    <uses-feature android:name="android.hardware.camera.ar" />
-
-    <uses-permission android:name="android.permission.CAMERA" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.ArActivity"></activity>
+        <activity android:name=".Activities.ShoppingDescriptionActivity"></activity>
+        <activity android:name=".Activities.ArActivity" />
         <activity android:name=".Activities.DescriptionActivity" />
         <activity android:name=".Activities.SignUpActivity" />
         <activity android:name=".Activities.SignInActivity">
@@ -32,5 +26,11 @@
             android:name="com.google.ar.core"
             android:value="required" />
     </application>
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera.ar" />
+
+    <uses-feature android:name="android:hardware.camera" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
 
 </manifest>

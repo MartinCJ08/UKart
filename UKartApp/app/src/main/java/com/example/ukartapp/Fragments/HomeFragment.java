@@ -6,6 +6,7 @@
 package com.example.ukartapp.Fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import ahmed.easyslider.EasySlider;
@@ -17,12 +18,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.ukartapp.Activities.MainActivity;
+import com.example.ukartapp.Activities.ShoppingDescriptionActivity;
 import com.example.ukartapp.Adapters.ShoppingListAdapter;
 import com.example.ukartapp.Models.Shopping;
 import com.example.ukartapp.R;
+import com.example.ukartapp.Utils.Constants;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,7 +40,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements ListView.OnItemClickListener{
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -51,7 +55,7 @@ public class HomeFragment extends Fragment {
 
     private List<Shopping> shoppingList = new ArrayList<>();
 
-    private final String SHOPPING_PATH = "shopping";
+    private Intent inDescription;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -72,15 +76,17 @@ public class HomeFragment extends Fragment {
         shoppingListAdapter = new ShoppingListAdapter(getContext(),shoppingList,R.layout.list_shopping_item);
         listView.setAdapter(shoppingListAdapter);
 
+        listView.setOnItemClickListener(this);
+
         return view;
     }
 
     /**
-     * Generate static shopping
+     * Generate dynamic shopping
      */
     private void setAllShopping(){
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference(SHOPPING_PATH);
+        databaseReference = firebaseDatabase.getReference(Constants.SHOPPING_PATH);
 
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
@@ -126,4 +132,19 @@ public class HomeFragment extends Fragment {
         easySlider.setPages(sliderItems);
     }
 
+    /**
+     *
+     * @param adapterView
+     * @param view
+     * @param i Item position
+     * @param l
+     */
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Bundle bundle = new Bundle();
+        bundle.putString("ID",shoppingList.get(i).getId());
+        inDescription = new Intent(getContext(), ShoppingDescriptionActivity.class);
+        inDescription.putExtras(bundle);
+        startActivity(inDescription);
+    }
 }

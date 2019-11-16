@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ukartapp.R;
+import com.example.ukartapp.Utils.Constants;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -34,7 +35,7 @@ public class SignInActivity extends AppCompatActivity {
     private String sEmail = "";
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference reference = database.getReference("usuarios");
+    private DatabaseReference reference = database.getReference(Constants.USERS_PATH);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +95,7 @@ public class SignInActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
 
-                            Query query = reference.orderByChild("correo").equalTo(email);
+                            Query query = reference.orderByChild(Constants.USER_EMAIL).equalTo(email);
 
                             query.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
