@@ -19,7 +19,6 @@
         android:id="@+id/txtShopDescDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fecha: "
         android:textStyle="bold"
         android:textSize="25dp"
         android:layout_gravity="right"
@@ -29,19 +28,19 @@
         android:id="@+id/txtShopDescPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total: $"
         android:textStyle="bold"
         android:textSize="25dp"
-        android:textColor="#000"/>
+        android:textColor="#000"
+        android:layout_gravity="center"/>
 
     <TextView
         android:id="@+id/txtShopDescQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cantidad de productos: "
         android:textStyle="bold"
         android:textSize="25dp"
-        android:textColor="#000"/>
+        android:textColor="#000"
+        android:layout_gravity="center"/>
 
     <ListView
         android:id="@+id/listShopping"
