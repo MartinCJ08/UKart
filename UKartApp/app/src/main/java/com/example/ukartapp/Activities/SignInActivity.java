@@ -79,11 +79,7 @@ public class SignInActivity extends AppCompatActivity {
         progressDialog.show();
 
         new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        progressDialog.dismiss();
-                    }
-                }, 3000);
+                () -> progressDialog.dismiss(), 3000);
     }
 
 

@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +21,13 @@ import com.example.ukartapp.Models.Usuario;
 import com.example.ukartapp.R;
 import com.example.ukartapp.Utils.Constants;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ThrowOnExtraProperties;
 import com.google.firebase.database.ValueEventListener;
 
 
@@ -52,6 +56,8 @@ public class ConfFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        mAuth = FirebaseAuth.getInstance();
+
         viewGlobal = inflater.inflate(R.layout.fragment_conf, container, false);
         btnAbout = viewGlobal.findViewById(R.id.btnAbout);
         btnChangedPwd = viewGlobal.findViewById(R.id.btnChangePwd);
@@ -108,7 +114,6 @@ public class ConfFragment extends Fragment {
                 modifiedUserDB(nom,ape,email,theNewPwd,cell);
             }
         }
-        Toast.makeText(getContext(),"Nom"+nom+" newPwd"+theNewPwd,Toast.LENGTH_SHORT).show();
     }
 
     public void createAboutDialog(){
@@ -174,7 +179,15 @@ public class ConfFragment extends Fragment {
         if( pass.equals("")){
             pass = this.oldPwd;
         }
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+//        currentUser.getEmail();
+//        currentUser.updatePassword(pass);
+//        currentUser
+
         Usuario user = new Usuario(nom, ape, email, pass, phone);
         reference.setValue(user);
+        Toast.makeText(getContext(),"CHANGED CORRECTLY", Toast.LENGTH_SHORT).show();
+
     }
 }

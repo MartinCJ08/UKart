@@ -7,6 +7,7 @@ package com.example.ukartapp.Adapters;
 
 import com.example.ukartapp.Fragments.ConfFragment;
 import com.example.ukartapp.Fragments.HomeFragment;
+import com.example.ukartapp.Fragments.ScanFragment;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -30,6 +31,7 @@ public class MyPagerAdapter extends FragmentStatePagerAdapter {
             case 1:
                 return new ConfFragment();
             case 2:
+                return new ScanFragment();
             default:
                 return null;
         }

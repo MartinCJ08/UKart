@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabLayout);
 //        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_action_cart));
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_action_home));
-//        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_action_camera));
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_action_settings));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_action_camera));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         viewPager = findViewById(R.id.viewPager);
