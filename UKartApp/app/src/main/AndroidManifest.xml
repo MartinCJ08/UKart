@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.ShoppingDescriptionActivity"></activity>
+        <activity android:name=".Activities.ShoppingActivity"></activity>
+        <activity android:name=".Activities.ShoppingDescriptionActivity" />
         <activity android:name=".Activities.ArActivity" />
         <activity android:name=".Activities.DescriptionActivity" />
         <activity android:name=".Activities.SignUpActivity" />
@@ -26,10 +27,10 @@
             android:name="com.google.ar.core"
             android:value="required" />
     </application>
-    <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature android:name="android.hardware.camera.ar" />
-
     <uses-feature android:name="android:hardware.camera" />
+
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-permission android:name="android.permission.CAMERA" />
 

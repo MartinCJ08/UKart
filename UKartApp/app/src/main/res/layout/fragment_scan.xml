@@ -3,35 +3,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.ScanFragment">
+    tools:context=".Fragments.ScanFragment"
+    android:padding="16dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView"
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="START TO SCAN A PRODUCT"
-            android:textStyle="bold" />
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:src="@mipmap/ic_basket"/>
 
-        <EditText
-            android:id="@+id/etCodigo"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:gravity="center"
-            android:hint="AQUI SE MOSTRARA EL CODIGO LEIDO"
-            android:textStyle="bold" />
+            android:layout_height="0dp"
+            android:layout_weight="2">
 
-        <Button
-            android:id="@+id/btnLeerCodigo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:text="SCAN CODE" />
+            <Button
+                android:id="@+id/btnStartShopping"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Iniciar compra"
+                android:layout_gravity="center"
+                style="@style/Widget.AppCompat.Button.Colored"/>
+
+        </LinearLayout>
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center"-->
+<!--            android:text="START TO SCAN A PRODUCT"-->
+<!--            android:textStyle="bold" />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/etCodigo"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="32dp"-->
+<!--            android:gravity="center"-->
+<!--            android:hint="AQUI SE MOSTRARA EL CODIGO LEIDO"-->
+<!--            android:textStyle="bold" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btnLeerCodigo"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            style="@style/Widget.AppCompat.Button.Colored"-->
+<!--            android:text="SCAN CODE" />-->
 
     </LinearLayout>
 </FrameLayout>

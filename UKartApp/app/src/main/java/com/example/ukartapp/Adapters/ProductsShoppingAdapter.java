@@ -63,25 +63,26 @@ public class ProductsShoppingAdapter extends BaseAdapter {
         txtName = convertView.findViewById(R.id.txtNameMyShopping);
 
         txtName.setText(productsList.get(position).getName());
+        imgIcon.setImageResource(R.mipmap.ic_snack);
 
-        Handler handler = new Handler();
-        Runnable runnable = new Runnable(){
-            @Override
-            public void run() {
-                imgIcon.setImageBitmap(bImage);
-            }
-        };
-
-        Thread thread = new Thread(){
-            @Override
-            public void run() {
-                super.run();
-                bImage = Constants.downloadImage(productsList.get(position).getIcon());
-                handler.post(runnable);
-            }
-        };
-
-        thread.start();
+//        Handler handler = new Handler();
+//        Runnable runnable = new Runnable(){
+//            @Override
+//            public void run() {
+//                imgIcon.setImageBitmap(bImage);
+//            }
+//        };
+//
+//        Thread thread = new Thread(){
+//            @Override
+//            public void run() {
+//                super.run();
+//                bImage = Constants.downloadImage(productsList.get(position).getIcon());
+//                handler.post(runnable);
+//            }
+//        };
+//
+//        thread.start();
 
         return convertView;
     }
