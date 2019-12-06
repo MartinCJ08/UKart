@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ukartapp.Models.Products;
 import com.example.ukartapp.R;
@@ -23,9 +24,9 @@ public class ProductsShoppingAdapter extends BaseAdapter {
     private int layout;
     private List<Products> productsList;
 
-    ImageView imgIcon;
-    TextView txtName;
-    Bitmap bImage;
+    private ImageView imgIcon;
+    private TextView txtName;
+    private Bitmap bImage;
 
     public ProductsShoppingAdapter(){}
 
@@ -61,14 +62,8 @@ public class ProductsShoppingAdapter extends BaseAdapter {
         imgIcon = convertView.findViewById(R.id.imgIconMyShopping);
         txtName = convertView.findViewById(R.id.txtNameMyShopping);
 
-
         txtName.setText(productsList.get(position).getName());
-        runThread(position);
 
-        return convertView;
-    }
-
-    private void runThread(int position){
         Handler handler = new Handler();
         Runnable runnable = new Runnable(){
             @Override
@@ -87,5 +82,7 @@ public class ProductsShoppingAdapter extends BaseAdapter {
         };
 
         thread.start();
+
+        return convertView;
     }
 }
