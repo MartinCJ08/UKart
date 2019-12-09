@@ -25,7 +25,7 @@ public class ProductsShoppingAdapter extends BaseAdapter {
     private List<Products> productsList;
 
     private ImageView imgIcon;
-    private TextView txtName;
+    private TextView txtName, txtDesc, txtPrice;
     private Bitmap bImage;
 
     public ProductsShoppingAdapter(){}
@@ -61,9 +61,13 @@ public class ProductsShoppingAdapter extends BaseAdapter {
 
         imgIcon = convertView.findViewById(R.id.imgIconMyShopping);
         txtName = convertView.findViewById(R.id.txtNameMyShopping);
+        txtDesc = convertView.findViewById(R.id.txtDescMyShopping);
+        txtPrice = convertView.findViewById(R.id.txtPriceMyShopping);
 
         txtName.setText(productsList.get(position).getName());
         imgIcon.setImageResource(R.mipmap.ic_snack);
+        txtDesc.setText(productsList.get(position).getDescription());
+        txtPrice.setText("$"+productsList.get(position).getPrice());
 
 //        Handler handler = new Handler();
 //        Runnable runnable = new Runnable(){

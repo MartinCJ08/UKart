@@ -16,6 +16,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -48,7 +50,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class ShoppingActivity extends AppCompatActivity {
+public class ShoppingActivity extends AppCompatActivity  implements  ListView.OnItemClickListener{
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference(Constants.PRODUCTS_PATH);
@@ -68,7 +70,7 @@ public class ShoppingActivity extends AppCompatActivity {
     private List<String> idList = new ArrayList<>();
     private List<Products> productList = new ArrayList<>();
 
-    private static final String PAYPAL_CLIENT_ID = "";
+    private static final String PAYPAL_CLIENT_ID = "AaJJUNiBJezLdgVuY3egxJAvJU1JvlrMnO7iV8B5J_1E3af4mdC9JejXCprbabQPaLav4-A5WoHUmogC";
     private static final int PAYPAL_REQUEST_CODE = 7777;
 
     private static PayPalConfiguration config = new PayPalConfiguration()
@@ -101,6 +103,7 @@ public class ShoppingActivity extends AppCompatActivity {
 
         btnScan.setOnClickListener(view -> scanClick());
         btnFinish.setOnClickListener(view -> finishClick());
+        listView.setOnItemClickListener(this);
     }
 
     /**
@@ -211,5 +214,24 @@ public class ShoppingActivity extends AppCompatActivity {
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION,config);
         intent.putExtra(PaymentActivity.EXTRA_PAYMENT,payPalPayment);
         startActivityForResult(intent,PAYPAL_REQUEST_CODE);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        new AlertDialog.Builder(ShoppingActivity.this)
+                .setTitle("Remover producto")
+                .setMessage("Desea remover  " + productList.get(i).getName() + "?")
+                .setPositiveButton("OK", (dialog, which) -> deleteProduct(i))
+                .setNegativeButton("CANCEL", (dialog, which) -> {
+                }).create().show();
+    }
+
+    private void deleteProduct(int i) {
+
+        totalPrice -= Integer.parseInt(productList.get(i).getPrice());
+
+        productList.remove(i);
+        idList.remove(i);
+        shoppingListAdapter.notifyDataSetChanged();
     }
 }
